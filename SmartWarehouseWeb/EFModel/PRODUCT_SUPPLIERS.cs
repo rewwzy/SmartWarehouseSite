@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SmartWarehouseWeb.EFModel
 {
-    public class Class
+    public class PRODUCT_SUPPLIERS
     {
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SmartWarehouseWeb.Configurations
+namespace SmartWarehouseWeb.EFModel
 {
-    public class Class
+    public class STORES
     {
     }
 }

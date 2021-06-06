@@ -1,21 +1,26 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SmartWarehouseWeb.SWareDBContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IHostingEnvironment = Microsoft.Extensions.Hosting.IHostingEnvironment;
 
 namespace SmartWarehouseWeb
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment _IHostingEnviroment;
+        public Startup(IConfiguration configuration, IHostingEnvironment ihostingEnvironment)
         {
             Configuration = configuration;
+            _IHostingEnviroment = ihostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +29,14 @@ namespace SmartWarehouseWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            #region Add Database
+            services.AddDbContext<SWareDB>(x => x.UseSqlServer(Configuration.GetConnectionString("SWareDB")));
+            #endregion
+
+            #region Add Singleton
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +56,8 @@ namespace SmartWarehouseWeb
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

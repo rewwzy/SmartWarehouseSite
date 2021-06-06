@@ -59,7 +59,7 @@ namespace SmartWarehouseWeb
 
             app.UseAuthorization();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
